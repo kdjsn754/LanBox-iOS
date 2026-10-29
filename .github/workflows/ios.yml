@@ -37,6 +37,7 @@ jobs:
         run: |
           xcodebuild -project LanBox.xcodeproj \
             -scheme LanBox \
+            -destination 'generic/platform=iOS' \
             -resolvePackageDependencies
 
       - name: Build (unsigned)
@@ -45,7 +46,7 @@ jobs:
           xcodebuild -project LanBox.xcodeproj \
             -scheme LanBox \
             -configuration Release \
-            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -derivedDataPath build \
             -skipMacroValidation \
             -skipPackagePluginValidation \

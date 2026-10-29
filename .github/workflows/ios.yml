@@ -23,9 +23,7 @@ jobs:
         run: |
           xcodebuild -version
           xcode-select -p
-
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_16.app
+          xcodebuild -showsdks
 
       - name: Install XcodeGen
         run: brew install xcodegen

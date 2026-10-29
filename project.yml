@@ -1,0 +1,73 @@
+name: LanBox
+options:
+  bundleIdPrefix: com.lanbox
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: "NO"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    ENABLE_BITCODE: "NO"
+
+packages:
+  AMSMB2:
+    url: https://github.com/amosavian/AMSMB2.git
+    from: 4.0.3
+
+targets:
+  LanBox:
+    type: application
+    platform: iOS
+    sources:
+      - path: LanBox
+        excludes:
+          - "Info.plist"
+    dependencies:
+      - package: AMSMB2
+        product: AMSMB2
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lanbox.smb
+        PRODUCT_NAME: LanBox
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: ""
+    info:
+      path: LanBox/Info.plist
+      properties:
+        CFBundleDisplayName: LanBox
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "1"
+        UILaunchScreen:
+          UIColorName: ""
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSLocalNetworkUsageDescription: 用于扫描并连接局域网中的 NAS 与共享文件夹
+        UIApplicationSupportsIndirectInputEvents: true
+        ITSAppUsesNonExemptEncryption: false
+        UIRequiresFullScreen: false
+
+schemes:
+  LanBox:
+    build:
+      targets:
+        LanBox: all
+    run:
+      config: Debug
+    archive:
+      config: Release

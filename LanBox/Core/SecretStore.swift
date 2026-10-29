@@ -40,7 +40,7 @@ enum SecretStore {
         return UserDefaults.standard.data(forKey: fallbackPrefix + account)
     }
 
-    static func delete(_ account: String) {
+    static func delete(account: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,

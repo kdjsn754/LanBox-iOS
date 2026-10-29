@@ -34,7 +34,8 @@ final class SMBResourceLoader: NSObject, AVAssetResourceLoaderDelegate {
                         shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
         let id = ObjectIdentifier(loadingRequest)
         let task = Task { [weak self] in
-            await self?.fulfill(loadingRequest)
+            guard let self else { return }
+            await self.fulfill(loadingRequest)
         }
         lock.lock()
         tasks[id] = task
